@@ -1,0 +1,40 @@
+.Login {
+  text-align: center;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+
+.Login__input:focus {
+  outline: none;
+}
+
+.Login__input {
+  margin: 0.4rem 0;
+  width: 200px;
+  border-radius: 8px;
+  border: 1px solid #cdcdcd;
+  padding: 8px;
+}
+
+.Login__PW__visiblity__container {
+}
+
+.Login__PW__visiblity {
+  display: inline-block;
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+
+.Login__PW__visiblity:focus {
+  display: inline-block;
+  outline: none;
+}
+
+.Login__btn {
+  width: 200px;
+  border-radius: 8px;
+  margin: 0.8rem 0;
+  border: 1px solid #cdcdcd;
+  padding: 0.3rem;
+}
