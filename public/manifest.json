@@ -5,8 +5,9 @@
     "default_popup": "index.html",
     "default_title": "Open the popup"
   },
-  "short_name": "Github Notifier",
+  "short_name": "Gittify",
   "name": "Chrome Github Notification extension",
+  "description": "Git + Notify = Gittify, The Simplest GitHub Notification Alarm",
   "icons": {
     "16": "logo.png",
     "48":  "logo.png",
@@ -14,5 +15,7 @@
   },
   "content_security_policy": "script-src 'self' 'sha256-VM5zIAZ8z4vgTCuywjsjhfoUXg4Wo10SazwmMTEhRsw='; object-src 'self'",
   "permissions": [
+    "https://api.github.com/notifications",
+    "storage"
   ]
 }

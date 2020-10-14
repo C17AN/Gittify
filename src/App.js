@@ -6,8 +6,12 @@ import Login from "./components/Login/Login";
 import Notifications from "./components/Notifications/Notifications";
 
 function App() {
+  useEffect(() => {
+    alert("open");
+  }, []);
   const [update, setUpdate] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
+  const checkNewNotification = () => {};
   const onNewNotification = () => {
     setUpdate(!update);
     update
