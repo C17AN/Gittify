@@ -18,7 +18,7 @@ function Notifications({ stateList = [], dispatchNotiList }) {
       headers: {
         method: "GET",
         // Authorization: `token ${stateList.Login}`,
-        Authorization: `token 09e19603b0680ffcdaf11202f03f5a1e176931c1`,
+        Authorization: `token `,
       },
     })
       .then((res) => res.json())
