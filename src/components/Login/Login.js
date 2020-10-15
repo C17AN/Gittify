@@ -10,26 +10,27 @@ function Login({ stateList, submitKeyToReducer }) {
 
   const handleChange = (e) => {
     submitKeyToReducer(e.target.value);
-    alert(stateList.Login);
+    chrome.storage.local.set({ token: e.target.value }, () => {});
   };
 
   // 최초 로그인 수행
   const handleLogin = () => {
-    fetch("https://api.github.com/notifications", {
-      headers: {
-        method: "GET",
-        Authorization: `token ${stateList.Login.token}`,
-        // Authorization: `token 745cb2e95152189bcb2553ecb8ad73275192aa49`,
-      },
-    }).then((res) => {
-      alert(stateList.Login.token);
-      if (res.status === 200) {
-        chrome.storage.local.set({ token: token }, () => {
-          console.log("Token is set to ", token);
-        });
-      } else {
-        alert("Invalid GH Token Detected.");
-      }
+    chrome.storage.local.get(["token"], function (result) {
+      alert(result.token);
+      fetch("https://api.github.com/notifications", {
+        headers: {
+          method: "GET",
+          Authorization: `token ${result.token}`,
+        },
+      }).then((res) => {
+        alert(res.status);
+        if (res.status === 200) {
+          chrome.storage.local.set({ signIn: true });
+          alert("Login success");
+        } else {
+          alert("Invalid GH Token Detected.");
+        }
+      });
     });
   };
 

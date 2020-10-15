@@ -1,21 +1,21 @@
 /*global chrome */
 
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import "./App.css";
 import Login from "./components/Login/Login";
 import Notifications from "./components/Notifications/Notifications";
 
-function App() {
+function App({ stateList }) {
   useEffect(() => {
     checkSignedIn();
   }, []);
   const [update, setUpdate] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
+
   const checkSignedIn = () => {
-    alert("signing-in");
-    chrome.storage.local.get(["token"], function (result) {
-      result.token === null ? setSignedIn(false) : setSignedIn(true);
-      alert(typeof result.token);
+    chrome.storage.local.get(["signIn"], function (result) {
+      result.signIn === false ? setSignedIn(false) : setSignedIn(true);
     });
   };
   const onNewNotification = () => {
@@ -33,4 +33,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    stateList: state,
+  };
+};
+
+export default connect(mapStateToProps)(App);

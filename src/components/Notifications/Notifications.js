@@ -5,25 +5,23 @@ import { connect } from "react-redux";
 import Notification from "../Notification/Notification";
 import "./Notifications.css";
 
-function Notifications({ stateList = [], dispatchNotiList }) {
+function Notifications({ stateList = [], setSignOut, dispatchNotiList }) {
   useEffect(() => {
     checkNewNotification();
     setInterval(checkNewNotification, 60000);
   }, []);
 
-  const [notiList, setNotiList] = useState([]);
-  const [notiCount, setNotiCount] = useState(0);
   const signOut = () => {
-    chrome.storage.local.set({ token: null }, () => {
-      alert("Token Removed");
+    setSignOut();
+    chrome.storage.local.set({ token: null, signIn: false }, () => {
+      alert("SuccessFully Removed GH Token.");
     });
   };
   function checkNewNotification() {
     fetch("https://api.github.com/notifications", {
       headers: {
         method: "GET",
-        // Authorization: `token ${stateList.Login}`,
-        Authorization: `token 745cb2e95152189bcb2553ecb8ad73275192aa49`,
+        Authorization: `token ${stateList.Login.token}`,
       },
     })
       .then((res) => res.json())
@@ -31,10 +29,8 @@ function Notifications({ stateList = [], dispatchNotiList }) {
         dispatchNotiList(
           data.filter((noti) => noti.reason !== "security_alert")
         );
-        console.log(data);
       });
   }
-  console.log(stateList);
   return (
     <div>
       <div style={{ marginBottom: "8px" }}>
@@ -74,6 +70,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     dispatchNotiList: (noti) => {
       dispatch({ type: "FETCH_NOTIFICATION", payload: noti });
+    },
+    setSignOut: () => {
+      dispatch({ type: "LOGOUT" });
     },
   };
 };
