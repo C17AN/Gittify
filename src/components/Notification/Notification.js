@@ -8,6 +8,7 @@ function Notification({ title, type, date, url }) {
       <a
         href={url}
         target="_blank"
+        rel="noopener noreferrer"
         style={{ textDecoration: "none", color: "black" }}
       >
         <div className="Notification__container">

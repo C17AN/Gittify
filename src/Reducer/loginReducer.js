@@ -5,10 +5,8 @@ const loginState = {
 
 const loginReducer = (state = loginState, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case "SUBMIT_GH_KEY":
       return { ...loginState, token: action.payload };
-    case "LOGOUT":
-      return state;
     default:
       return state;
   }

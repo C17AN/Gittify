@@ -1,3 +1,4 @@
+/*global chrome */
 import { findAllByTitle } from "@testing-library/react";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -12,13 +13,17 @@ function Notifications({ stateList = [], dispatchNotiList }) {
 
   const [notiList, setNotiList] = useState([]);
   const [notiCount, setNotiCount] = useState(0);
-
+  const signOut = () => {
+    chrome.storage.local.set({ token: null }, () => {
+      alert("Token Removed");
+    });
+  };
   function checkNewNotification() {
     fetch("https://api.github.com/notifications", {
       headers: {
         method: "GET",
         // Authorization: `token ${stateList.Login}`,
-        Authorization: `token `,
+        Authorization: `token 745cb2e95152189bcb2553ecb8ad73275192aa49`,
       },
     })
       .then((res) => res.json())
@@ -27,11 +32,6 @@ function Notifications({ stateList = [], dispatchNotiList }) {
           data.filter((noti) => noti.reason !== "security_alert")
         );
         console.log(data);
-        // data.forEach((noti) => {
-        //   if (noti.reason !== "security_alert") {
-        //     dispatchNotiList(noti);
-        //   }
-        // });
       });
   }
   console.log(stateList);
@@ -48,7 +48,7 @@ function Notifications({ stateList = [], dispatchNotiList }) {
           reason: type,
           updated_at: date,
           repository: repo,
-          id: id,
+          id,
         } = el;
 
         return (
@@ -61,7 +61,7 @@ function Notifications({ stateList = [], dispatchNotiList }) {
           />
         );
       })}
-      <button>Sign Out (Remove Key From Storage)</button>
+      <button onClick={signOut}>Sign Out (Remove Key From Storage)</button>
     </div>
   );
 }
@@ -77,4 +77,5 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
