@@ -7,24 +7,27 @@ import Notifications from "./components/Notifications/Notifications";
 
 function App() {
   useEffect(() => {
-    alert("open");
+    checkSignedIn();
   }, []);
   const [update, setUpdate] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
-  const checkNewNotification = () => {};
+  const checkSignedIn = () => {
+    alert("signing-in");
+    chrome.storage.local.get(["token"], function (result) {
+      result.token === null ? setSignedIn(false) : setSignedIn(true);
+      alert(typeof result.token);
+    });
+  };
   const onNewNotification = () => {
     setUpdate(!update);
     update
       ? chrome.browserAction.setIcon({ path: "logo_new.png" })
       : chrome.browserAction.setIcon({ path: "logo.png" });
   };
-  const onLogin = () => {
-    setSignedIn(true);
-  };
   return (
     <div className="App">
       <h1>Gittify</h1>
-      {signedIn ? <Notifications /> : <Login login={onLogin} />}
+      {signedIn ? <Notifications /> : <Login />}
       <button onClick={onNewNotification}>Press this!</button>
     </div>
   );
