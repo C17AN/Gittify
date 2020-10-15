@@ -7,6 +7,10 @@ const loginReducer = (state = loginState, action) => {
   switch (action.type) {
     case "SUBMIT_GH_KEY":
       return { ...loginState, token: action.payload };
+    case "LOGIN":
+      return { ...loginState, signedIn: true };
+    case "LOGOUT":
+      return { ...loginState, signedIn: false, token: null };
     default:
       return state;
   }
