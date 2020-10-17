@@ -7,13 +7,14 @@ import "./Login.css";
 function Login({ stateList, submitKeyToReducer }) {
   const [token, setToken] = useState("");
   const [loading, isLoading] = useState(false);
-
+  // 토큰 입력할때 로컬과 리듀서에 저장함.
   const handleChange = (e) => {
     submitKeyToReducer(e.target.value);
     chrome.storage.local.set({ token: e.target.value }, () => {});
   };
 
-  // 최초 로그인 수행
+  // 로그인 버튼 누르면 입력한 토큰으로 요청 시도
+  // 불량 토큰은 로컬에 저장하지 않음.
   const handleLogin = () => {
     chrome.storage.local.get(["token"], function (result) {
       alert(result.token);
@@ -21,6 +22,7 @@ function Login({ stateList, submitKeyToReducer }) {
         headers: {
           method: "GET",
           Authorization: `token ${result.token}`,
+          expires: 1000,
         },
       }).then((res) => {
         alert(res.status);

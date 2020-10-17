@@ -1,0 +1,29 @@
+.Notifications {
+  display: flex;
+  flex-direction: column;
+}
+.Notifications__container {
+  height: 300px;
+  margin-bottom: 20px;
+  overflow-y: scroll;
+}
+.Notifications__container::-webkit-scrollbar {
+  display: none;
+}
+
+.Notifications__signout {
+  justify-content: flex-end;
+  background: none;
+  border: none;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.Notifications__signout:hover {
+  transition: 1s ease-in;
+  text-decoration: underline;
+}
+
+.Notifications__signout:focus {
+  outline: none;
+}
