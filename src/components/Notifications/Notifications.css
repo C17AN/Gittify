@@ -1,0 +1,46 @@
+.Notifications {
+  display: flex;
+  flex-direction: column;
+}
+.Notifications__container {
+  height: 300px;
+  margin-bottom: 20px;
+  overflow: auto;
+  cursor: grab;
+}
+.Notifications__container::-webkit-scrollbar {
+  display: none;
+}
+
+.Notifications__signout__warning {
+  display: none;
+}
+
+.focused {
+  position: absolute;
+  top: 365px;
+  padding: 2px;
+  background-color: #e94f4a;
+  color: #ffffff;
+  border: 1px solid #cdcdcd;
+  border-radius: 8px;
+  display: block;
+  z-index: 10;
+}
+
+.Notifications__signout {
+  justify-content: flex-end;
+  background: none;
+  border: none;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.Notifications__signout:hover {
+  transition: 1s ease-in;
+  text-decoration: underline;
+}
+
+.Notifications__signout:focus {
+  outline: none;
+}

@@ -9,7 +9,11 @@ import Notifications from "./components/Notifications/Notifications";
 function App({ stateList }) {
   useEffect(() => {
     checkSignedIn();
-  }, []);
+    chrome.browserAction.setIcon({ path: "logo_new.png" });
+    return () => {
+      chrome.browserAction.setIcon({ path: "logo.png" });
+    };
+  }, [stateList.Login.signedIn]);
   const [update, setUpdate] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
 

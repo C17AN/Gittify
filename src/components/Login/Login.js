@@ -4,9 +4,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import "./Login.css";
 
-function Login({ stateList, submitKeyToReducer }) {
-  const [token, setToken] = useState("");
-  const [loading, isLoading] = useState(false);
+function Login({ stateList, submitKeyToReducer, loginSuccess }) {
 
   const handleChange = (e) => {
     submitKeyToReducer(e.target.value);
@@ -16,16 +14,15 @@ function Login({ stateList, submitKeyToReducer }) {
   // 최초 로그인 수행
   const handleLogin = () => {
     chrome.storage.local.get(["token"], function (result) {
-      alert(result.token);
       fetch("https://api.github.com/notifications", {
         headers: {
           method: "GET",
           Authorization: `token ${result.token}`,
         },
       }).then((res) => {
-        alert(res.status);
         if (res.status === 200) {
           chrome.storage.local.set({ signIn: true });
+          //loginSuccess();
           alert("Login success");
         } else {
           alert("Invalid GH Token Detected.");
@@ -66,6 +63,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     submitKeyToReducer: (token) => {
       dispatch({ type: "SUBMIT_GH_KEY", payload: token });
+    },
+    loginSuccess: () => {
+      dispatch({ type: "LOGIN_SUCCESS" });
     },
   };
 };
