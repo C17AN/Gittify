@@ -14,11 +14,13 @@ function App({ stateList }) {
       chrome.browserAction.setIcon({ path: "logo.png" });
     };
   }, [stateList.Login.signedIn]);
+
   const [update, setUpdate] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
 
   const checkSignedIn = () => {
     chrome.storage.local.get(["signIn"], function (result) {
+      alert(result.signIn);
       result.signIn === false ? setSignedIn(false) : setSignedIn(true);
     });
   };
@@ -32,7 +34,7 @@ function App({ stateList }) {
     <div className="App">
       <h1>Gittify</h1>
       {signedIn ? <Notifications /> : <Login />}
-      <button onClick={onNewNotification}>Press this!</button>
+      {/* <button onClick={onNewNotification}>Press this!</button> */}
     </div>
   );
 }

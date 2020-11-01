@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import "./Login.css";
 
 function Login({ stateList, submitKeyToReducer, loginSuccess }) {
-
   const handleChange = (e) => {
     submitKeyToReducer(e.target.value);
     chrome.storage.local.set({ token: e.target.value }, () => {});
@@ -14,6 +13,7 @@ function Login({ stateList, submitKeyToReducer, loginSuccess }) {
   // 최초 로그인 수행
   const handleLogin = () => {
     chrome.storage.local.get(["token"], function (result) {
+      alert(result.token);
       fetch("https://api.github.com/notifications", {
         headers: {
           method: "GET",

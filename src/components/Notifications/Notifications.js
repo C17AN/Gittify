@@ -8,10 +8,10 @@ import "./Notifications.css";
 function Notifications({ stateList = [], setSignOut, dispatchNotiList }) {
   useEffect(() => {
     checkNewNotification();
-    setInterval(checkNewNotification, 5000000);
+    setInterval(checkNewNotification, 5000);
   }, []);
   const [mouseOver, setmouseOver] = useState(false);
-  let cnt = 0;
+
   const signOut = () => {
     //setSignOut();
     chrome.storage.local.set({ token: null, signIn: false }, () => {

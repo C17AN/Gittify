@@ -54,17 +54,17 @@ function Notification({ title, type, date, url }) {
     return `${month} ${day}, ${time}:${minute}`;
   };
   return (
-    <div className="Notification">
+    <div className={`Notification`}>
       <a
         href={url}
         target="_blank"
         rel="noopener noreferrer"
         style={{ textDecoration: "none", color: "black" }}
       >
-        <div className="Notification__container">
+        <div className={`Notification__container ${type}`}>
           <div className="Notification__title">{title}</div>
           <div className="Notification__secondLine">
-            <div className="Notification__type">Type: {type}</div>
+            <div className="Notification__type">{type}</div>
             <div className="Notification__date">{parseDate(date)}</div>
           </div>
         </div>

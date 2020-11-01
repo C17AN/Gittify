@@ -16,11 +16,6 @@
   "content_security_policy": "script-src 'self' 'sha256-VM5zIAZ8z4vgTCuywjsjhfoUXg4Wo10SazwmMTEhRsw='; object-src 'self'",
   "permissions": [
     "https://api.github.com/notifications",
-    "storage",
-    "tabs"
-  ],
-  "background": {
-    "scripts": ["./background.js"],
-    "persistent": false
-  }
+    "storage"
+  ]
 }
