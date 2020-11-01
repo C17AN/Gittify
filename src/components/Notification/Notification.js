@@ -53,6 +53,26 @@ function Notification({ title, type, date, url }) {
     }
     return `${month} ${day}, ${time}:${minute}`;
   };
+
+  const parseType = (type) => {
+    switch (type) {
+      case "author":
+        return "thread updated";
+      case "manual":
+        return "subscribe updated";
+      case "security_alert":
+        return "security alert";
+      case "state_change":
+        return "state changed";
+      case "team_mention":
+        return "team mention";
+      case "review_requested":
+        return "review requested";
+      default:
+        return type;
+    }
+  };
+
   return (
     <div className={`Notification`}>
       <a
@@ -64,7 +84,7 @@ function Notification({ title, type, date, url }) {
         <div className={`Notification__container ${type}`}>
           <div className="Notification__title">{title}</div>
           <div className="Notification__secondLine">
-            <div className="Notification__type">{type}</div>
+            <div className="Notification__type">{parseType(type)}</div>
             <div className="Notification__date">{parseDate(date)}</div>
           </div>
         </div>

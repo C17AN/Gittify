@@ -1,5 +1,4 @@
 /*global chrome */
-import { findAllByTitle } from "@testing-library/react";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Notification from "../Notification/Notification";
