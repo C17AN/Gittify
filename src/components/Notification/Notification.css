@@ -6,32 +6,75 @@
   justify-content: space-between;
   align-items: center;
   border: 1px solid #cdcdcd;
-  margin: 5px 0;
+  margin: 8px 0;
   cursor: pointer;
   border-radius: 8px;
+  height: 50px;
+}
+
+.author {
+  border-left: 12px solid #dddd00;
+}
+
+.state_change {
+  border-left: 12px solid #dd00dd;
+}
+
+.mention {
+  border-left: 12px solid #2ad424;
+}
+
+.assign {
+  border-left: 12px solid #244dd4;
+}
+
+.review_requested {
+  border-left: 12px solid #cc0000;
+}
+
+.subscribed {
+  border-left: 12px solid #cc7700;
+}
+
+.invitation {
+  border-left: 12px solid #6900cc;
+}
+
+.team_mention {
+  border-left: 12px solid #00cc3d;
+}
+
+.comment {
+  border-left: 12px solid #1a0aac;
 }
 
 .Notification__container:hover {
   transition: 0.3s ease-out;
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 .Notification__secondLine {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .Notification__title {
+  overflow: hidden;
+  max-width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-size: 0.88rem;
   margin: 5px 1rem;
 }
 
 .Notification__type {
   margin: 5px 1rem;
-  font-size: 0.88rem;
+  font-size: 0.7rem;
 }
 
 .Notification__date {
-  font-size: 0.88rem;
+  font-size: 0.7rem;
   margin: 5px 1rem;
 }

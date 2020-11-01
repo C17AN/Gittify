@@ -41,33 +41,45 @@ function Notifications({ stateList = [], setSignOut, dispatchNotiList }) {
       </div>
       <div className="Notifications__container">
         <Notification
-          title={"sample title 1"}
-          type={"sample type 1"}
+          title={"sample title 1 sample title 1 sample title 1 sample title 1"}
+          type={"mention"}
           date={"2020-10-13"}
         />
 
         <Notification
           title={"sample title 2"}
-          type={"sample type 2"}
+          type={"author"}
           date={"2020-10-13"}
         />
 
         <Notification
-          title={"sample title 2"}
-          type={"sample type 2"}
+          title={"state_change"}
+          type={"state_change"}
           date={"2020-10-13"}
         />
 
+        <Notification title={"assign"} type={"assign"} date={"2020-10-13"} />
         <Notification
-          title={"sample title 2"}
-          type={"sample type 2"}
+          title={"review_requested"}
+          type={"review_requested"}
           date={"2020-10-13"}
         />
         <Notification
-          title={"sample title 2"}
-          type={"sample type 2"}
+          title={"subscribed"}
+          type={"subscribed"}
           date={"2020-10-13"}
         />
+        <Notification
+          title={"invitation"}
+          type={"invitation"}
+          date={"2020-10-13"}
+        />
+        <Notification
+          title={"team_mention"}
+          type={"team_mention"}
+          date={"2020-10-13"}
+        />
+        <Notification title={"comment"} type={"comment"} date={"2020-10-13"} />
       </div>
       {stateList.Noti.map((el) => {
         const {

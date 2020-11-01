@@ -11,10 +11,10 @@ function Notification({ title, type, date, url }) {
         rel="noopener noreferrer"
         style={{ textDecoration: "none", color: "black" }}
       >
-        <div className="Notification__container">
+        <div className={`Notification__container ${type}`}>
           <div className="Notification__title">{title}</div>
           <div className="Notification__secondLine">
-            <div className="Notification__type">Type: {type}</div>
+            <div className="Notification__type">{type}</div>
             <div className="Notification__date">{date}</div>
           </div>
         </div>
