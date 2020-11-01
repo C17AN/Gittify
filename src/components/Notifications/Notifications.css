@@ -1,8 +1,7 @@
-.Notifications {
+.Notifications__container {
   display: flex;
   flex-direction: column;
-}
-.Notifications__container {
+  align-items: center;
   height: 300px;
   margin-bottom: 20px;
   overflow: auto;
@@ -18,8 +17,10 @@
 
 .focused {
   position: absolute;
-  top: 365px;
-  padding: 2px;
+  right: 1.5px;
+  top: 360px;
+  padding: 3px;
+  line-height: 1rem;
   background-color: #e94f4a;
   color: #ffffff;
   border: 1px solid #cdcdcd;
@@ -29,7 +30,6 @@
 }
 
 .Notifications__signout {
-  justify-content: flex-end;
   background: none;
   border: none;
   font-size: 0.7rem;

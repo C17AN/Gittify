@@ -33,8 +33,8 @@ function Notifications({ stateList = [], setSignOut, dispatchNotiList }) {
         .then((res) => res.json())
         .then((data) => {
           dispatchNotiList(
-            //data
-            data.filter((noti) => noti.reason !== "security_alert")
+            data
+            //data.filter((noti) => noti.reason !== "security_alert")
           );
         });
     });

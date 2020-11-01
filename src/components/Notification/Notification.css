@@ -9,7 +9,7 @@
   margin: 8px 0;
   cursor: pointer;
   border-radius: 8px;
-  width: 90%;
+  width: 220px;
   height: 50px;
 }
 
@@ -47,6 +47,10 @@
 
 .comment {
   border-left: 12px solid #1a0aac;
+}
+
+.security_alert {
+  border-left: 12px solid #d40f2a;
 }
 
 .Notification__container:hover {
