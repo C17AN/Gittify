@@ -10,17 +10,18 @@ function Notifications({ stateList = [], setSignOut, dispatchNotiList }) {
     checkNewNotification();
     setInterval(checkNewNotification, 5000);
   }, []);
+
   const [mouseOver, setmouseOver] = useState(false);
 
   const signOut = () => {
-    //setSignOut();
-    chrome.storage.local.set({ token: null, signIn: false }, () => {
+    setSignOut();
+    chrome.storage.sync.set({ token: null, signIn: false }, () => {
       alert("SuccessFully Removed GH Token.");
     });
   };
 
   const checkNewNotification = () => {
-    chrome.storage.local.get(["token"], function (result) {
+    chrome.storage.sync.get(["token"], function (result) {
       chrome.browserAction.setIcon({ path: "logo_new.png" });
       //alert(cnt++);
       fetch("https://api.github.com/notifications", {
@@ -96,9 +97,9 @@ const mapDispatchToProps = (dispatch) => {
     dispatchNotiList: (noti) => {
       dispatch({ type: "FETCH_NOTIFICATION", payload: noti });
     },
-    // setSignOut: () => {
-    //   dispatch({ type: "LOGOUT" });
-    // },
+    setSignOut: () => {
+      dispatch({ type: "LOGOUT" });
+    },
   };
 };
 

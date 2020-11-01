@@ -16,20 +16,22 @@ function App({ stateList }) {
   }, [stateList.Login.signedIn]);
 
   const [update, setUpdate] = useState(false);
-  const [signedIn, setSignedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState(true);
 
   const checkSignedIn = () => {
-    chrome.storage.local.get(["signIn"], function (result) {
-      alert(result.signIn);
-      result.signIn === false ? setSignedIn(false) : setSignedIn(true);
+    chrome.storage.sync.get(["signIn"], function (result) {
+      result.signIn === true || stateList.Login.signedIn === true
+        ? setSignedIn(true)
+        : setSignedIn(false);
     });
   };
-  const onNewNotification = () => {
-    setUpdate(!update);
-    update
-      ? chrome.browserAction.setIcon({ path: "logo_new.png" })
-      : chrome.browserAction.setIcon({ path: "logo.png" });
-  };
+
+  // const onNewNotification = () => {
+  //   setUpdate(!update);
+  //   update
+  //     ? chrome.browserAction.setIcon({ path: "logo_new.png" })
+  //     : chrome.browserAction.setIcon({ path: "logo.png" });
+  // };
   return (
     <div className="App">
       <h1>Gittify</h1>

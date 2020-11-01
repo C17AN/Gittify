@@ -4,16 +4,15 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import "./Login.css";
 
-function Login({ stateList, submitKeyToReducer, loginSuccess }) {
+function Login({ submitKeyToReducer, loginSuccess }) {
   const handleChange = (e) => {
-    submitKeyToReducer(e.target.value);
-    chrome.storage.local.set({ token: e.target.value }, () => {});
+    // submitKeyToReducer(e.target.value);
+    chrome.storage.sync.set({ token: e.target.value }, () => {});
   };
 
   // 최초 로그인 수행
   const handleLogin = () => {
-    chrome.storage.local.get(["token"], function (result) {
-      alert(result.token);
+    chrome.storage.sync.get(["token"], function (result) {
       fetch("https://api.github.com/notifications", {
         headers: {
           method: "GET",
@@ -21,8 +20,8 @@ function Login({ stateList, submitKeyToReducer, loginSuccess }) {
         },
       }).then((res) => {
         if (res.status === 200) {
-          chrome.storage.local.set({ signIn: true });
-          //loginSuccess();
+          chrome.storage.sync.set({ signIn: true }, () => {});
+          loginSuccess();
           alert("Login success");
         } else {
           alert("Invalid GH Token Detected.");

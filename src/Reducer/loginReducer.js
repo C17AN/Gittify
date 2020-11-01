@@ -10,7 +10,7 @@ const loginReducer = (state = loginState, action) => {
     case "LOGIN_SUCCESS":
       return { ...loginState, signedIn: true };
     case "LOGOUT":
-      return { ...loginState, signedIn: false, token: null };
+      return { signedIn: false, token: null };
     default:
       return state;
   }
